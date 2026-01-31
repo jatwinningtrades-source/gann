@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GANN Zones Pro | Technical Strategy Manual</title>
+    <title>GANN Zones Pro | Master Strategy Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -15,28 +15,25 @@
         * { box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg-main); color: var(--text-primary); line-height: 1.6; margin: 0; display: flex; }
         
-        /* Sidebar Navigation */
-        aside { width: 280px; background: #010409; border-right: 1px solid var(--border); height: 100vh; position: fixed; overflow-y: auto; padding: 2rem 1rem; }
+        aside { width: 280px; background: #010409; border-right: 1px solid var(--border); height: 100vh; position: fixed; overflow-y: auto; padding: 2rem 1rem; z-index: 100; }
         aside h2 { font-size: 1.1rem; color: #fff; margin-bottom: 2rem; text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
         .nav-group { margin-bottom: 1.5rem; }
         .nav-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
-        aside a { display: block; color: var(--text-primary); text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; margin-bottom: 4px; }
+        aside a { display: block; color: var(--text-primary); text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; margin-bottom: 4px; transition: 0.2s; }
         aside a:hover { background: #21262d; color: var(--accent); }
 
-        /* Main Content */
-        main { margin-left: 280px; padding: 3rem; width: 100%; max-width: 1100px; }
-        section { margin-bottom: 5rem; scroll-margin-top: 2rem; }
-        h1 { font-size: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
-        h2 { color: var(--accent); margin-top: 2rem; }
+        main { margin-left: 280px; padding: 3rem; width: 100%; max-width: 1200px; }
+        section { margin-bottom: 6rem; scroll-margin-top: 3rem; }
+        h1 { font-size: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem; color: #fff; }
+        h2 { color: var(--accent); margin-top: 2rem; border-left: 4px solid var(--accent); padding-left: 15px; }
+        h3 { color: #fff; margin-top: 1.5rem; }
         
-        /* Calculator Component */
         .calculator-card { background: var(--bg-card); border: 1px solid var(--accent); border-radius: 12px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
         .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
         label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 5px; }
         input { width: 100%; background: #0d1117; border: 1px solid var(--border); color: #fff; padding: 12px; border-radius: 8px; font-size: 1rem; }
         input:focus { border-color: var(--accent); outline: none; }
         
-        /* Tables */
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
         th { text-align: left; padding: 12px; border-bottom: 2px solid var(--border); color: var(--text-secondary); font-size: 0.8rem; }
         td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
@@ -45,20 +42,23 @@
         .tag-secondary { background: rgba(0, 245, 212, 0.15); color: var(--secondary); border: 1px solid var(--secondary); }
         .tag-minor { background: rgba(139, 148, 158, 0.15); color: var(--text-secondary); border: 1px solid var(--text-secondary); }
 
-        /* Setup Cards */
-        .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+        .card:hover { border-color: var(--accent); }
         .stars { color: var(--gold); margin-bottom: 10px; font-size: 0.8rem; }
         
-        /* Alerts/Notices */
-        .notice { padding: 1rem; border-left: 4px solid var(--accent); background: rgba(88, 166, 255, 0.1); border-radius: 4px; margin: 1rem 0; }
-        .danger-zone { border-left-color: var(--danger); background: rgba(218, 54, 51, 0.1); }
+        .notice { padding: 1.2rem; border-left: 4px solid var(--accent); background: rgba(88, 166, 255, 0.05); border-radius: 4px; margin: 1.5rem 0; }
+        .danger-zone { border-left-color: var(--danger); background: rgba(218, 54, 51, 0.05); }
+        .success-zone { border-left-color: var(--success); background: rgba(35, 134, 54, 0.05); }
 
-        /* Code Blocks */
-        pre { background: #010409; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); overflow-x: auto; color: #79c0ff; font-family: 'Courier New', monospace; }
+        .checklist-item { display: flex; align-items: flex-start; margin-bottom: 10px; font-size: 0.9rem; }
+        .checklist-item i { margin-right: 10px; margin-top: 4px; }
+        .check-yes { color: var(--success); }
+        .check-no { color: var(--danger); }
 
-        @media (max-width: 850px) { aside { display: none; } main { margin-left: 0; padding: 1.5rem; } }
+        pre { background: #010409; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); overflow-x: auto; color: #79c0ff; font-family: 'Courier New', monospace; font-size: 0.85rem; }
+
+        @media (max-width: 950px) { aside { display: none; } main { margin-left: 0; padding: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -66,60 +66,58 @@
 <aside>
     <h2>GANN ZONES <span style="color:var(--major)">PRO</span></h2>
     <div class="nav-group">
-        <span class="nav-label">Tools</span>
+        <span class="nav-label">Core Tools</span>
         <a href="#calculator"><i class="fa-solid fa-calculator"></i> Level Calculator</a>
-    </div>
-    <div class="nav-group">
-        <span class="nav-label">The Strategy</span>
         <a href="#hierarchy"><i class="fa-solid fa-layer-group"></i> Level Hierarchy</a>
-        <a href="#setups"><i class="fa-solid fa-chart-line"></i> A+ Setups</a>
-        <a href="#execution"><i class="fa-solid fa-bolt"></i> Execution Rules</a>
     </div>
     <div class="nav-group">
-        <span class="nav-label">Risk & Routine</span>
-        <a href="#risk"><i class="fa-solid fa-shield-halved"></i> Risk Management</a>
+        <span class="nav-label">Execution</span>
+        <a href="#setups"><i class="fa-solid fa-chart-line"></i> A+ Trading Setups</a>
+        <a href="#entries"><i class="fa-solid fa-bolt"></i> Entry & Confirmation</a>
+        <a href="#exits"><i class="fa-solid fa-arrow-right-to-bracket"></i> Exit Planning</a>
+    </div>
+    <div class="nav-group">
+        <span class="nav-label">Management</span>
+        <a href="#risk"><i class="fa-solid fa-shield-halved"></i> Risk & Formulas</a>
+        <a href="#avoidance"><i class="fa-solid fa-ban"></i> Trade Avoidance</a>
         <a href="#routine"><i class="fa-solid fa-calendar-check"></i> Daily Routine</a>
-    </div>
-    <div class="nav-group">
-        <span class="nav-label">Reference</span>
-        <a href="#pine"><i class="fa-solid fa-code"></i> Pine Script Source</a>
     </div>
 </aside>
 
 <main>
     <section id="welcome">
-        <h1>Mastering GANN Zones</h1>
-        <p>GANN Zones Pro is a mathematical volatility strategy based on the <strong>Square of 144</strong>. By dividing the Prior Day's range into an 8-step "Octave," we identify precise institutional reversal and acceleration points.</p>
+        <h1>Mastering GANN Zones Pro</h1>
+        <p>A complete mathematical methodology for trading the <strong>GANN Square of 144</strong> on 5-minute charts[cite: 3]. GANN divides each trading day into precise predictive levels based on the Prior Day range[cite: 30, 56].</p>
         <div class="notice">
-            <strong>Core Concept:</strong> Price doesn't move randomly. It moves between mathematical vibrations defined by previous volatility.
+            <strong>The Octave Concept:</strong> The daily range is an "octave" divided into 8 equal steps (0/8 through 8/8)[cite: 32]. These act as magnetic zones where price pauses, reverses, or accelerates[cite: 34].
         </div>
     </section>
 
     <section id="calculator">
-        <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Daily Level Generator</h2>
-        <p>At midnight, capture the Prior Day High (PDH) and Prior Day Low (PDL) to project today's grid.</p>
+        <h2>Daily Level Generator</h2>
+        <p>Capture Prior Day High (PDH) and Low (PDL) at midnight to project today's predictive grid[cite: 36, 50].</p>
         <div class="calculator-card">
             <div class="grid-inputs">
                 <div>
-                    <label>Prior Day High</label>
-                    <input type="number" id="pdh" placeholder="e.g., 18540.25" oninput="calculate()">
+                    <label>Prior Day High (PDH)</label>
+                    <input type="number" id="pdh" placeholder="26098" oninput="calculate()">
                 </div>
                 <div>
-                    <label>Prior Day Low</label>
-                    <input type="number" id="pdl" placeholder="e.g., 18320.50" oninput="calculate()">
+                    <label>Prior Day Low (PDL)</label>
+                    <input type="number" id="pdl" placeholder="25536" oninput="calculate()">
                 </div>
             </div>
             <table id="gannTable">
                 <thead>
                     <tr>
-                        <th>GANN LEVEL</th>
+                        <th>LEVEL</th>
                         <th>TYPE</th>
-                        <th>PRICE TARGET</th>
-                        <th>FUNCTION</th>
+                        <th>PRICE</th>
+                        <th>MARKET FUNCTION</th>
                     </tr>
                 </thead>
                 <tbody id="resBody">
-                    <tr><td colspan="4" style="text-align:center; color:var(--text-secondary)">Input PD values to generate levels...</td></tr>
+                    <tr><td colspan="4" style="text-align:center; color:var(--text-secondary)">Waiting for input...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -127,92 +125,136 @@
 
     <section id="hierarchy">
         <h2>Level Hierarchy</h2>
-        <p>Not all levels are equal. Your trade quality depends on which level is being tested.</p>
         <div class="setup-grid">
             <div class="card">
                 <span class="lvl-tag tag-major">MAJOR (0/8, 4/8, 8/8)</span>
-                <p>The strongest Support & Resistance. 4/8 is the "Magnet" midpoint. Expect heavy consolidation or violent reversals here.</p>
+                <p>Strongest S/R points. Represents PDL, Midpoint, and PDH[cite: 40]. The 4/8 Midpoint is the <strong>"Magnet"</strong> and most powerful level[cite: 59, 360].</p>
             </div>
             <div class="card">
                 <span class="lvl-tag tag-secondary">SECONDARY (2/8, 6/8)</span>
-                <p>Key pivot zones. If price breaks these, it usually runs to the next Major level.</p>
+                <p>Key reversal zones with high probability[cite: 43]. If these break, price usually targets the next Major level.</p>
             </div>
             <div class="card">
                 <span class="lvl-tag tag-minor">MINOR (1/8, 3/8, 5/8, 7/8)</span>
-                <p>Intraday scalping pivots. Used for trailing stops or aggressive "Zone-to-Zone" scalps.</p>
+                <p>Intraday pivots used primarily for scalping or trailing stop placement[cite: 46].</p>
             </div>
         </div>
     </section>
 
-    
-
     <section id="setups">
-        <h2>High-Probability Setups</h2>
+        <h2>The 5 High-Probability Setups</h2>
         <div class="setup-grid">
             <div class="card">
                 <div class="stars">★★★★★</div>
-                <h3>The 4/8 Mean Reversion</h3>
-                <p>Wait for price to over-extend to 8/8 or 0/8, then trade the move back to the 4/8 Midpoint Magnet.</p>
+                <h3>1. The Bounce Play</h3>
+                <p>Price tests a MAJOR level and rejects with confirmation (wick/engulfing)[cite: 70, 88]. Wait for candle to CLOSE outside the zone[cite: 89].</p>
             </div>
             <div class="card">
                 <div class="stars">★★★★★</div>
-                <h3>Breakout & Retest</h3>
-                <p>Price breaks a Major level (e.g., 8/8), closes above, and returns to "kiss" the level. Enter on the rejection candle.</p>
+                <h3>2. Breakout & Retest</h3>
+                <p>Clean break through a major level with volume expansion[cite: 109, 111]. Old resistance becomes new support[cite: 114].</p>
+            </div>
+            <div class="card">
+                <div class="stars">★★★★★</div>
+                <h3>3. Accumulation Break</h3>
+                <p>Tight range builds at a major level followed by an explosive break[cite: 78, 79].</p>
             </div>
             <div class="card">
                 <div class="stars">★★★★☆</div>
-                <h3>The Octave Runner</h3>
-                <p>When momentum is high, trade the "clean air" between 2/8 and 4/8 or 4/8 and 6/8. These are fast moves.</p>
+                <h3>4. Zone-to-Zone Runner</h3>
+                <p>Momentum move targeting the next mathematical level in a clear trend[cite: 76, 366].</p>
+            </div>
+            <div class="card">
+                <div class="stars">★★★☆☆</div>
+                <h3>5. False Break Reversal</h3>
+                <p>Quick pierce through a level followed by immediate rejection back into the previous zone[cite: 82].</p>
             </div>
         </div>
     </section>
 
-    <section id="execution">
-        <h2>Execution Rules</h2>
+    <section id="entries">
+        <h2>Entry & Confirmation Signals</h2>
+        <div class="setup-grid">
+            <div class="card">
+                <h3>Bullish Signals</h3>
+                <div class="checklist-item"><i class="fa-solid fa-check check-yes"></i> Long lower wick (downside rejection) [cite: 140]</div>
+                <div class="checklist-item"><i class="fa-solid fa-check check-yes"></i> Bullish engulfing at zone [cite: 142]</div>
+                <div class="checklist-item"><i class="fa-solid fa-check check-yes"></i> Hammer/Inverted hammer [cite: 144]</div>
+                <div class="checklist-item"><i class="fa-solid fa-check check-yes"></i> Volume increase on reversal [cite: 150]</div>
+            </div>
+            <div class="card">
+                <h3>Bearish Signals</h3>
+                <div class="checklist-item"><i class="fa-solid fa-check check-no"></i> Long upper wick (upside rejection) [cite: 141]</div>
+                <div class="checklist-item"><i class="fa-solid fa-check check-no"></i> Bearish engulfing at zone [cite: 143]</div>
+                <div class="checklist-item"><i class="fa-solid fa-check check-no"></i> Shooting star/Hanging man [cite: 145]</div>
+                <div class="checklist-item"><i class="fa-solid fa-check check-no"></i> Close in lower 60% of range [cite: 147]</div>
+            </div>
+        </div>
+        <div class="notice success-zone">
+            <strong>The 'Perfect Storm' Setup:</strong> Trend Alignment + News Stabilization + Major GANN Level + Round Number. This offers a 70%+ win rate[cite: 236].
+        </div>
+    </section>
+
+    <section id="exits">
+        <h2>The GANN Level Ladder (Exits)</h2>
+        <p>Always set your exit plan before entering the trade[cite: 387].</p>
         <ul>
-            <li><strong>The 5-Min Close:</strong> Never enter a trade before the 5-minute candle closes outside or on the zone.</li>
-            <li><strong>Volume Confirmation:</strong> Look for relative volume expansion when price approaches Major levels.</li>
-            <li><strong>Stop Loss:</strong> Always place stops 1-2 points beyond the zone band, never exactly on the line.</li>
+            <li><strong>Target 1 (50%):</strong> Exit at NEXT GANN level and move stop to Breakeven (BE)[cite: 160].</li>
+            <li><strong>Target 2 (30%):</strong> Exit at SECOND GANN level away and trail stop to previous level[cite: 163].</li>
+            <li><strong>Runner (20%):</strong> Trail with GANN levels; exit when price fails to reach next level and reverses[cite: 166].</li>
         </ul>
         <div class="notice danger-zone">
-            <strong>The Lunch Rule:</strong> Avoid new entries between 11:30 AM and 1:30 PM EST. Volume usually dies, leading to GANN level "chopping."
+            <strong>Stop Loss Rule:</strong> Place initial stop 6-10 points BEYOND the GANN zone. NEVER move stops wider[cite: 168, 169].
         </div>
     </section>
 
     <section id="risk">
-        <h2>Risk Management</h2>
-        <div class="setup-grid">
-            <div class="card">
-                <h3>The 2% Rule</h3>
-                <p>Risk max 2% of equity per trade. If you hit -4% in a day, stop trading immediately.</p>
-            </div>
-            <div class="card">
-                <h3>Scaling Out</h3>
-                <p>Take 50% profit at the first GANN level. Move stop to Break Even. Let the remaining 50% run to the next Major level.</p>
+        <h2>Risk Management & Position Sizing</h2>
+        <div class="calculator-card" style="border-color: var(--danger);">
+            <h3>Position Size Formula</h3>
+            <p><code>(Account Size × Risk %) ÷ Stop Distance = Contracts</code> </p>
+            <div class="setup-grid">
+                <div class="card">
+                    <h4>The 5 Golden Rules</h4>
+                    <p>1. Never risk >1-2% per trade[cite: 182].</p>
+                    <p>2. Max 6% total account exposure[cite: 185].</p>
+                    <p>3. After 3 losses, reduce size by 50%[cite: 188].</p>
+                    <p>4. Daily loss limit = -2% (then STOP)[cite: 194].</p>
+                </div>
             </div>
         </div>
     </section>
 
-    
+    <section id="avoidance">
+        <h2>When NOT to Trade</h2>
+        <div class="setup-grid">
+            <div class="card">
+                <h3>Time-Based No-Go</h3>
+                <p><strong>Lunch Hour:</strong> 11:30 AM - 1:30 PM (Low volume/choppy).</p>
+                <p><strong>Late Day:</strong> After 3:30 PM[cite: 205].</p>
+                <p><strong>News:</strong> 15min before/after major releases (FOMC, CPI, NFP)[cite: 208, 209].</p>
+            </div>
+            <div class="card">
+                <h3>Market-Based No-Go</h3>
+                <p><strong>High VIX:</strong> VIX > 30[cite: 213].</p>
+                <p><strong>Small Range:</strong> PD range < 200 points[cite: 386].</p>
+                <p><strong>Counter-Trend:</strong> Against 15m/1H dominant trend[cite: 216].</p>
+            </div>
+        </div>
+    </section>
 
-    <section id="pine">
-        <h2>Pine Script Source (Logic Reference)</h2>
-        <pre>
-// GANN Octave Calculation Logic
-float octave_range = pd_high - pd_low
-float step = octave_range / 8
-
-f_level_price(float low, float range, int step_num) =>
-    low + (step_num * range / 8)
-
-// 4/8 Midpoint is the strongest mathematical center
-float midpoint = f_level_price(pd_low, octave_range, 4)
-        </pre>
+    <section id="routine">
+        <h2>Daily Trading Routine</h2>
+        <div class="card">
+            <div class="checklist-item"><i class="fa-solid fa-square-check"></i> <strong>Pre-Market (8-9:30 AM):</strong> Review PDH/PDL, check news calendar, identify key zones [cite: 277-280].</div>
+            <div class="checklist-item"><i class="fa-solid fa-square-check"></i> <strong>Opening (9:30-11:30 AM):</strong> Wait 15-30m for range, take A+ setups only, max 2-3 trades [cite: 281-284].</div>
+            <div class="checklist-item"><i class="fa-solid fa-square-check"></i> <strong>Post-Market (After 4 PM):</strong> Journal all trades, calculate stats, prepare for tomorrow [cite: 293-296].</div>
+        </div>
     </section>
 
     <footer style="text-align:center; padding: 4rem 0; color:var(--text-secondary); border-top: 1px solid var(--border);">
-        <p>GANN Zones Pro v1.0 • Strategy by QuadThreat AI</p>
-        <p style="font-size:0.8rem;">Trading involves risk. Past performance does not guarantee future results.</p>
+        <p>GANN Zones Pro v1.0 • Strategy by QuadThreat AI (@QuadThreatAI) [cite: 401]</p>
+        <p style="font-size:0.8rem;">Trading is a marathon, not a sprint. Protect your capital[cite: 391, 395].</p>
     </footer>
 </main>
 
@@ -228,15 +270,15 @@ float midpoint = f_level_price(pd_low, octave_range, 4)
             let html = '';
             
             const levels = [
-                {n: "8/8", t: "MAJOR", c: "tag-major", f: "PD High / Strong Resistance"},
-                {n: "7/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot"},
-                {n: "6/8", t: "SECONDARY", c: "tag-secondary", f: "Key Reversal Zone"},
-                {n: "5/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot"},
-                {n: "4/8", t: "MAJOR", c: "tag-major", f: "Midpoint / THE MAGNET"},
-                {n: "3/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot"},
-                {n: "2/8", t: "SECONDARY", c: "tag-secondary", f: "Key Reversal Zone"},
-                {n: "1/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot"},
-                {n: "0/8", t: "MAJOR", c: "tag-major", f: "PD Low / Strong Support"}
+                {n: "8/8", t: "MAJOR", c: "tag-major", f: "PD High / Strongest Resistance [cite: 362]"},
+                {n: "7/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot / Scalping Only [cite: 45]"},
+                {n: "6/8", t: "SECONDARY", c: "tag-secondary", f: "Key Reversal Zone [cite: 361]"},
+                {n: "5/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot / Scalping Only"},
+                {n: "4/8", t: "MAJOR", c: "tag-major", f: "Midpoint / THE MAGNET "},
+                {n: "3/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot / Scalping Only"},
+                {n: "2/8", t: "SECONDARY", c: "tag-secondary", f: "Key Support / Reversal [cite: 359]"},
+                {n: "1/8", t: "MINOR", c: "tag-minor", f: "Weak Pivot / Scalping Only"},
+                {n: "0/8", t: "MAJOR", c: "tag-major", f: "PD Low / Strongest Support [cite: 358]"}
             ];
 
             levels.forEach((lvl, i) => {
@@ -244,7 +286,7 @@ float midpoint = f_level_price(pd_low, octave_range, 4)
                 html += `<tr>
                     <td style="font-weight:bold">${lvl.n}</td>
                     <td><span class="lvl-tag ${lvl.c}">${lvl.t}</span></td>
-                    <td style="font-family:monospace; color:var(--accent)">${price.toFixed(2)}</td>
+                    <td style="font-family:monospace; color:var(--accent)">${price.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
                     <td style="color:var(--text-secondary); font-size:0.85rem">${lvl.f}</td>
                 </tr>`;
             });
